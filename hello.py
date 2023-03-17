@@ -20,7 +20,7 @@ def preprocess(data) -> pl.DataFrame:
 
 @task(log_prints=True)
 def write_data(data: pl.DataFrame) -> None:
-    result = data
+    result = data.collect()
     result.write_parquet("data.parquet")
 
 @flow(name="Polars Data Processing")
